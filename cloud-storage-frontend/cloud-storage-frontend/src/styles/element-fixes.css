@@ -1,0 +1,43 @@
+/* src/styles/element-fixes.css */
+/* 修复 Element Plus 特定的兼容性问题 */
+
+/* 修复分页组件输入框 */
+.el-pagination .el-input__inner {
+  appearance: textfield;
+}
+
+/* 修复滚动条隐藏 */
+.el-scrollbar__wrap--hidden-default {
+  /* 使用标准方法隐藏滚动条 */
+}
+
+.el-scrollbar__wrap--hidden-default::-webkit-scrollbar {
+  display: none;
+}
+
+/* 修复进度条动画性能 */
+.el-progress-bar__inner::before {
+  animation: progress-indeterminate 2s linear infinite;
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 修复多选下拉框的勾选图标 */
+.el-select-dropdown.is-multiple .el-select-dropdown__item.is-selected:after {
+  /* 使用 background 替代 mask */
+  background: var(--el-color-primary) 
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='white' d='M406.656 706.944L195.84 496.256a32 32 0 10-45.248 45.248l256 256 512-512a32 32 0 00-45.248-45.248L406.592 706.944z'/%3E%3C/svg%3E")
+    no-repeat center center;
+  background-size: 12px 12px;
+  border: none;
+}

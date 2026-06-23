@@ -1,0 +1,151 @@
+/* src/styles/theme.css */
+
+/* --- 浅色主题 (Light Mode - 现代清透风) --- */
+html:not(.dark) {
+  color-scheme: light;
+  
+  /* 核心背景 - 使用更干净的冷灰白，不再是那种浑浊的灰 */
+  --main-bg: #F2F3F5;  
+  --bg-primary: #F2F3F5;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F7F8FA; /* 输入框、按钮背景 */
+  --bg-card: #FFFFFF;
+  
+  /* 文字 - 增加对比度，让文字更清晰 */
+  --text-primary: #1D2129;
+  --text-secondary: #4E5969;
+  --text-tertiary: #86909C;
+  --text-disabled: #C9CDD4;
+  
+  /* 边框 - 极淡，或者直接透明（由阴影替代） */
+  --border-light: #F2F3F5; 
+  --border-medium: #E5E6EB;
+  
+  /* 品牌色 - 使用更高饱和度、更年轻的蓝色 */
+  --primary: #1677FF; /* 类似 Ant Design 5 的蓝，比 Element 默认的更有活力 */
+  --success: #00B42A;
+  --warning: #FF7D00;
+  --error: #F53F3F;
+  
+  /* 阴影系统 - 核心：用阴影代替边框 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03); /* 极轻微 */
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.05); /* 卡片悬浮 */
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.08); /* 弹窗 */
+  
+  /* Element Plus 变量强力覆盖 */
+  --el-color-primary: var(--primary);
+  --el-bg-color: var(--bg-secondary);
+  --el-bg-color-page: var(--main-bg);
+  --el-text-color-primary: var(--text-primary);
+  --el-text-color-regular: var(--text-secondary);
+  --el-border-color: var(--border-medium);
+  --el-border-color-light: var(--border-light);
+  
+  /* 关键：全局圆角提升 */
+  --el-border-radius-base: 10px; 
+  --el-border-radius-small: 6px;
+  --el-border-radius-round: 20px;
+  
+  /* 输入框样式优化 */
+  --el-fill-color-blank: #FFFFFF;
+}
+
+/* --- 深色主题 (Dark Mode - 深邃质感) --- */
+html.dark {
+  color-scheme: dark;
+  
+  --main-bg: #000000;        /* 纯黑背景，更省电且对比度高 */
+  --bg-primary: #000000;
+  --bg-secondary: #141414;    /* 侧边栏、卡片 */
+  --bg-tertiary: #1F1F1F;     /* 输入框 */
+  --bg-card: #141414;
+  
+  --text-primary: #rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-tertiary: rgba(255, 255, 255, 0.45);
+  
+  --border-light: #303030;
+  --border-medium: #424242;
+  
+  --primary: #3C89FF; /* 深色模式下稍微提亮蓝色 */
+  
+  /* 深色模式下阴影不明显，主要靠亮度差 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  
+  /* Element Plus 覆盖 */
+  --el-bg-color: var(--bg-card);
+  --el-bg-color-page: var(--main-bg);
+  --el-bg-color-overlay: #1D1D1D;
+  --el-border-color: var(--border-medium);
+  --el-border-color-light: var(--border-light);
+  
+  --el-fill-color: var(--bg-tertiary);
+  --el-fill-color-light: #1A1A1A;
+  --el-fill-color-blank: var(--bg-tertiary);
+  
+  /* 按钮修复 */
+  --el-button-bg-color: var(--bg-tertiary);
+  --el-button-border-color: var(--border-medium);
+  --el-button-text-color: var(--text-primary);
+}
+
+/* --- 全局样式重置与优化 --- */
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased; /* 让字体更细更清晰 */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 核心修复：移除所有 Element Plus 卡片和表格的默认灰色边框，改用阴影 */
+.el-card {
+  border: none !important; /* 移除边框 */
+  box-shadow: var(--shadow-sm) !important; /* 使用柔和阴影 */
+  background-color: var(--bg-card) !important;
+  border-radius: 12px !important; /* 更大的圆角 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 悬停时卡片微微上浮 */
+.el-card:hover {
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* 表格样式现代化 */
+.el-table {
+  --el-table-border-color: var(--border-light);
+  --el-table-header-bg-color: var(--bg-tertiary) !important; /* 表头稍微灰一点 */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary) !important;
+  border-bottom: none !important;
+}
+
+/* 按钮圆角加大 */
+.el-button {
+  border-radius: 8px !important;
+  font-weight: 500;
+  box-shadow: none !important; /* 扁平化 */
+}
+
+/* 输入框圆角加大 */
+.el-input__wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 0 0 1px var(--border-medium) inset !important; /* 细边框 */
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--primary) inset !important;
+}
+
+/* 面包屑更柔和 */
+.el-breadcrumb__inner {
+  font-weight: normal !important;
+}
