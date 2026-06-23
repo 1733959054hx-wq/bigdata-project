@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket测试</title>
+</head>
+<body>
+<h2>WebSocket 测试工具</h2>
+<input id="msgInput" placeholder="输入消息..." />
+<button onclick="sendMsg()">发送</button>
+<pre id="log"></pre>
+
+<script>
+    const ws = new WebSocket("ws://localhost:8081/chat");
+    const log = (msg) => document.getElementById('log').textContent += msg + "\n";
+
+    ws.onopen = () => log("✅ 已连接服务器");
+    ws.onmessage = (e) => log("📩 收到消息: " + e.data);
+    ws.onclose = () => log("❌ 连接关闭");
+
+    function sendMsg() {
+        const msg = document.getElementById('msgInput').value;
+        ws.send(msg);
+        log("➡️ 发送: " + msg);
+    }
+</script>
+</body>
+</html>

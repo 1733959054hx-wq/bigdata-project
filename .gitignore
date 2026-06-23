@@ -1,0 +1,31 @@
+﻿# IDE
+.idea/
+*.iml
+.vscode/
+
+# Dependencies
+node_modules/
+
+# Build output
+target/
+build/
+dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Env files
+.env
+.env.local
+
+# Java
+*.jar
